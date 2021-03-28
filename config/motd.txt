@@ -5,6 +5,6 @@ DS13 работает на основе сильно модифицирован�
 <br>
 
 <strong>Discord [EN]:</strong> <a href="https://discord.gg/FSrhSq6">come and join the community!</a>
-<strong>Discord [RU]:</strong> <a href="https://discord.gg/2kkzZuWZkv">come and join the community!</a>
+<strong>Discord [RU]:</strong> <a href="https://discord.gg/2kkzZuWZkv">заходите в наш дискорд!</a>
 <strong>Bugtracker:</strong> <a href="https://github.com/DS-13-Dev-Team/DS13/issues">for posting of bugs and issues.</a>
 <strong>Patreon:</strong> <a href="https://www.patreon.com/user?u=31268725&fan_landing=true">ваши донаты помогут будующей разработке.</a>
