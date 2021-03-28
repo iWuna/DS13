@@ -36,7 +36,7 @@
 	name = "trauma first-aid kit"
 	desc = "It's an emergency medical kit for when people brought ballistic weapons to a laser fight."
 	icon_state = "radfirstaid"
-	item_state = "firstaid-ointment"
+	item_state = "firstaid-advanced"
 
 	startswith = list(
 		/obj/item/weapon/storage/med_pouch/trauma = 4

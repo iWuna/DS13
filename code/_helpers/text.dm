@@ -14,7 +14,7 @@
  */
 
 // Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
-/proc/sanitizeSQL(var/t as text)
+/proc/sanitizeSQL(t as text)
 	var/sqltext = dbcon.Quote(t);
 	return copytext_char(sqltext, 2, length_char(sqltext));//Quote() adds quotes around input, we already do that
 
@@ -73,6 +73,13 @@
 //this is a problem of double-encode(when & becomes &amp;), use sanitize() with encode=0, but not the sanitizeSafe()!
 /proc/sanitizeSafe(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1, var/allow_links = TRUE)
 	return sanitize(replace_characters(input, list(">"=" ","<"=" ", "\""="'")), max_length, encode, trim, extra,  allow_links)
+
+/proc/punctuate(var/t as text)
+	var/last = copytext_char(t,-1)
+	if(last in list("!","?","."))
+		return t
+	else
+		return t + "."
 
 //Filters out undesirable characters from names
 /proc/sanitizeName(var/input, var/max_length = MAX_NAME_LEN, var/allow_numbers = 0, var/force_first_letter_uppercase = TRUE)
@@ -263,8 +270,16 @@
 	return trim_left(trim_right(text))
 
 //Returns a string with the first element of the string capitalized.
-/proc/capitalize(var/t as text)
-	return uppertext(copytext_char(t, 1, 2)) + copytext_char(t, 2)
+/proc/capitalize(t as text)
+	var/i = 1
+	while(copytext_char(t, i, i + 1) == "<")
+		i = findtext_char(t, ">", i + 1)
+		if(i)
+			i++
+		else
+			i = 2
+			break
+	return copytext_char(t, 1, i) + uppertext(copytext_char(t, i, i + 1)) + copytext_char(t, i + 1)
 
 //This proc strips html properly, remove < > and all text between
 //for complete text sanitizing should be used sanitize()
